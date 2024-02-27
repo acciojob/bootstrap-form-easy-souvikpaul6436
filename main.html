@@ -1,16 +1,89 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internship Application Form</title>
+<style>
+    .invalid-feedback {
+        color: red;
+    }
+</style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+
+<form id="internship-form" action="#" method="POST">
+    <div>
+        <label for="first-name-input">First Name:</label>
+        <input type="text" id="first-name-input" name="first-name">
+        <div class="invalid-feedback" id="first-name-feedback"></div>
+    </div>
+    <div>
+        <label for="last-name-input">Last Name:</label>
+        <input type="text" id="last-name-input" name="last-name">
+        <div class="invalid-feedback" id="last-name-feedback"></div>
+    </div>
+    <div>
+        <label for="email-input">Email:</label>
+        <input type="email" id="email-input" name="email">
+        <div class="invalid-feedback" id="email-feedback"></div>
+    </div>
+    <div>
+        <label for="college-input">College Name:</label>
+        <input type="text" id="college-input" name="college">
+        <div class="invalid-feedback" id="college-feedback"></div>
+    </div>
+    <div>
+        <label for="roll-no-input">Roll No:</label>
+        <input type="text" id="roll-no-input" name="roll-no">
+        <div class="invalid-feedback" id="roll-no-feedback"></div>
+    </div>
+    <div>
+        <label for="graduation-year-select">Graduation Year:</label>
+        <select id="graduation-year-select" name="graduation-year">
+            <option value="">Select Year</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+        <div class="invalid-feedback" id="graduation-year-feedback"></div>
+    </div>
+    <div>
+        <input type="checkbox" id="conditions-checkbox" name="conditions">
+        <label for="conditions-checkbox">I agree to the terms and conditions</label>
+        <div class="invalid-feedback" id="conditions-feedback"></div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.getElementById('internship-form').addEventListener('submit', function(event) {
+        let valid = true;
+        const feedbackMessages = {
+            'first-name-input': 'Please enter your first name.',
+            'last-name-input': 'Please enter your last name.',
+            'email-input': 'Please enter a valid email address.',
+            'college-input': 'Please enter your college name.',
+            'roll-no-input': 'Please enter your roll number.',
+            'graduation-year-select': 'Please select your graduation year.',
+            'conditions-checkbox': 'Please agree to the terms and conditions.'
+        };
+        for (const field in feedbackMessages) {
+            const input = document.getElementById(field);
+            const feedback = document.getElementById(field + '-feedback');
+            if (!input.value) {
+                valid = false;
+                feedback.textContent = feedbackMessages[field];
+            } else {
+                feedback.textContent = '';
+            }
+        }
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
 </script>
 
 </body>
-
 </html>
